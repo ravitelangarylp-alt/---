@@ -278,6 +278,46 @@ table.vt{width:100%;border-collapse:collapse;min-width:960px;font-size:.78rem}
 @keyframes cff{0%{opacity:1;transform:translateY(-30px) rotate(0)}100%{opacity:0;transform:translateY(110vh) rotate(720deg) scale(.2)}}
 
 /* MISC */
+/* ===== WELCOME SCREEN ===== */
+#welcome-screen{position:fixed;inset:0;z-index:20000;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+#welcome-screen.hidden{display:none!important}
+.wlc-box{background:linear-gradient(145deg,var(--surf),var(--s2));border:1px solid rgba(245,158,11,.25);border-radius:28px;padding:52px 40px;max-width:480px;width:100%;text-align:center;box-shadow:0 40px 100px rgba(0,0,0,.7);position:relative;overflow:hidden}
+.wlc-box::before{content:'';position:absolute;inset:0;background:conic-gradient(from 0deg,rgba(249,115,22,.06),rgba(245,158,11,.09),rgba(249,115,22,.06));animation:mandala 12s linear infinite;pointer-events:none}
+.wlc-inner{position:relative;z-index:1}
+.wlc-om{font-family:'Tiro Devanagari Sanskrit',serif;font-size:5rem;line-height:1;display:block;background:linear-gradient(135deg,var(--saffron),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:omPulse 4s ease-in-out infinite;margin-bottom:18px}
+.wlc-title{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:900;background:linear-gradient(90deg,var(--saffron),#fff,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px;line-height:1.25}
+.wlc-deva{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.1rem;color:var(--gold2);margin-bottom:6px;font-style:italic}
+.wlc-sub{font-size:.84rem;color:var(--muted);margin-bottom:28px;line-height:1.65}
+.wlc-input{width:100%;padding:16px 18px;background:var(--s3);border:2px solid var(--bdr2);border-radius:var(--r2);color:var(--txt);font-size:1.1rem;font-weight:700;outline:none;text-align:center;margin-bottom:18px;transition:border-color .25s;font-family:'Inter',sans-serif}
+.wlc-input:focus{border-color:var(--saffron);box-shadow:0 0 0 3px rgba(249,115,22,.15)}
+.wlc-input::placeholder{color:var(--muted2);font-weight:400}
+.wlc-features{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px}
+.wlc-feat{background:rgba(255,255,255,.03);border:1px solid var(--bdr);border-radius:10px;padding:10px 12px;font-size:.72rem;color:var(--muted);text-align:left;line-height:1.4}
+.wlc-feat b{color:var(--gold2);display:block;margin-bottom:2px}
+.wlc-lang-row{display:flex;gap:8px;justify-content:center;margin-bottom:20px}
+.wlc-lang-btn{padding:7px 16px;border-radius:50px;border:1px solid var(--bdr2);background:var(--s2);color:var(--muted);font-size:.76rem;font-weight:700;cursor:pointer;transition:all .2s}
+.wlc-lang-btn.active{background:var(--saffron);color:#fff;border-color:transparent}
+
+/* ===== PROFILE BADGE ===== */
+#profile-badge{position:fixed;top:14px;left:14px;z-index:999;display:flex;align-items:center;gap:8px;background:var(--s3);border:1px solid var(--bdr2);border-radius:50px;padding:7px 16px;font-size:.78rem;box-shadow:0 4px 18px rgba(0,0,0,.4);transition:all .22s;max-width:220px}
+#profile-badge:hover{background:var(--s4)}
+#profile-badge .av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--saffron),var(--gold));display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:900;color:#0a0a0a;flex-shrink:0}
+#profile-badge .pname{font-weight:700;color:var(--gold2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:130px}
+#profile-badge .plvl{font-size:.62rem;color:var(--muted);margin-top:1px}
+
+/* ===== RESET CONFIRM MODAL ===== */
+.reset-modal{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:10002;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(10px)}
+.reset-modal.show{display:flex;animation:fi .3s ease}
+.reset-box{background:var(--s2);border:1px solid rgba(244,114,182,.3);border-radius:22px;padding:36px 32px;max-width:420px;width:100%;text-align:center}
+.reset-icon{font-size:3rem;display:block;margin-bottom:14px}
+.reset-title{font-size:1.2rem;font-weight:800;margin-bottom:8px}
+.reset-sub{font-size:.84rem;color:var(--muted);margin-bottom:22px;line-height:1.6}
+
+/* ===== HEADER WELCOME BACK ===== */
+.hdr-wb{display:none;align-items:center;justify-content:center;gap:10px;margin-bottom:14px;padding:10px 20px;background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.2);border-radius:50px;font-size:.84rem;font-weight:600}
+.hdr-wb.show{display:inline-flex}
+.hdr-wb .wbname{color:var(--gold2);font-weight:800}
+
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--s4);border-radius:3px}
@@ -292,14 +332,31 @@ table.vt{width:100%;border-collapse:collapse;min-width:960px;font-size:.78rem}
   <span>🌐</span><span id="lang-label">ಕನ್ನಡ</span>
 </button>
 
+<!-- PROFILE BADGE (top-left, shown when logged in) -->
+<div id="profile-badge" class="hidden" onclick="document.getElementById('reset-modal').classList.add('show')">
+  <div class="av" id="pb-av">?</div>
+  <div>
+    <div class="pname" id="pb-name">—</div>
+    <div class="plvl" id="pb-lvl">Tap to reset</div>
+  </div>
+</div>
+
 <div class="app">
 
 <!-- HEADER -->
 <header class="hdr">
   <span class="om">ॐ</span>
+  <!-- Welcome back banner - shown for returning users -->
+  <div class="hdr-wb" id="hdr-wb">
+    <span>🙏</span>
+    <span id="hdr-wb-k">ಸ್ವಾಗತ ಮತ್ತೆ,</span>
+    <span class="wbname" id="hdr-wb-name"></span>
+    <span>!</span>
+  </div>
   <h1 class="hdr-title" id="hdr-t">Sanskrit Self-Learning Engine</h1>
   <p class="hdr-sub" id="hdr-s">Complete Bilingual Sanskrit Learning System</p>
   <div class="hdr-badge">📚 <b>4</b> <span id="hb-lv">Levels</span> · <b>200</b> <span id="hb-q">Questions</span> · <b id="hb-grand">Grand Exam: 100 Q</b> · <span id="hb-lb">Leaderboard</span></div>
+  <div style="margin-top:10px"><button onclick="document.getElementById('reset-modal').classList.add('show')" style="background:none;border:none;cursor:pointer;font-size:.72rem;color:var(--muted2);padding:4px 8px;border-radius:50px;transition:color .2s" onmouseover="this.style.color='var(--fem)'" onmouseout="this.style.color='var(--muted2)'" id="hdr-reset-btn">⚙️ <span id="hdr-reset-lbl">ಪ್ರಗತಿ ಅಳಿಸಿ / Reset Progress</span></button></div>
 
   <!-- PROGRESS TRACK -->
   <div class="track">
@@ -498,8 +555,222 @@ table.vt{width:100%;border-collapse:collapse;min-width:960px;font-size:.78rem}
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════════════════
+     WELCOME SCREEN (shown on first visit, hidden after)
+════════════════════════════════════════════════════ -->
+<div id="welcome-screen">
+  <div class="wlc-box">
+    <div class="wlc-inner">
+      <span class="wlc-om">ॐ</span>
+      <div class="wlc-deva" id="wlc-deva">संस्कृत स्वयं-शिक्षकः</div>
+      <div class="wlc-title" id="wlc-title">Welcome to Sanskrit<br>Swayam-Shikshaka!</div>
+      <div class="wlc-sub" id="wlc-sub">ಸಂಸ್ಕೃತ ಸ್ವಯಂ-ಶಿಕ್ಷಕಕ್ಕೆ ಸ್ವಾಗತ!<br>ಪ್ರಾರಂಭಿಸಲು ನಿಮ್ಮ ಹೆಸರನ್ನು ನಮೂದಿಸಿ<br><span style="color:var(--muted);font-size:.8rem">Please enter your name to start your journey.</span></div>
+
+      <!-- Language selector on welcome screen -->
+      <div class="wlc-lang-row">
+        <button class="wlc-lang-btn active" id="wlc-en" onclick="setWelcomeLang('e')">English</button>
+        <button class="wlc-lang-btn" id="wlc-kn" onclick="setWelcomeLang('k')">ಕನ್ನಡ</button>
+      </div>
+
+      <input class="wlc-input" id="wlc-name-input" type="text" maxlength="28"
+        placeholder="Your name / ನಿಮ್ಮ ಹೆಸರು..."
+        onkeydown="if(event.key==='Enter')submitWelcome()"/>
+
+      <button class="btn bp" style="width:100%;justify-content:center;font-size:.95rem;padding:15px" onclick="submitWelcome()" id="wlc-btn">
+        ಪ್ರಾರಂಭಿಸಿ · Start Learning →
+      </button>
+
+      <div class="wlc-features" style="margin-top:20px">
+        <div class="wlc-feat"><b>📚 200 Q</b>4 Parts · Bilingual</div>
+        <div class="wlc-feat"><b>🏆 100 Q Exam</b>Grand Challenge</div>
+        <div class="wlc-feat"><b>💾 Auto-Save</b>Progress kept safe</div>
+        <div class="wlc-feat"><b>🥇 Leaderboard</b>Top 10 scores</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RESET PROGRESS MODAL -->
+<div class="reset-modal" id="reset-modal">
+  <div class="reset-box">
+    <span class="reset-icon">⚠️</span>
+    <div class="reset-title" id="rm-title">Reset All Progress?</div>
+    <div class="reset-sub" id="rm-sub">This will erase your name, all unlocked levels, and leaderboard scores. You'll start fresh from the Welcome screen.<br><br><b style="color:var(--fem)">This cannot be undone.</b></div>
+    <div class="brow">
+      <button class="btn" style="background:linear-gradient(135deg,var(--fem),#be185d);color:#fff" onclick="confirmReset()" id="rm-confirm">🗑 Reset Everything</button>
+      <button class="btn bg" onclick="document.getElementById('reset-modal').classList.remove('show')" id="rm-cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
 <script>
 'use strict';
+
+/* ═══════════════════════════════════════════════════════════
+   PLAYER PROFILE — localStorage keys
+   sk_player  = { name, lang, highestUnlockedLevel, createdAt }
+   sk_lb      = [ { name, score, total, date } ... ] (top 20)
+═══════════════════════════════════════════════════════════ */
+const SK_KEY   = 'sk_player';   // profile key
+const SK_LB    = 'sk_lb';       // leaderboard key
+
+// Reactive player profile object (populated on load)
+let PLAYER = {
+  name: '',
+  lang: 'e',
+  highestUnlockedLevel: 1   // 1–5 (5 = grand exam unlocked)
+};
+
+/* ── Read / Write helpers ── */
+function loadPlayer(){
+  try{ return JSON.parse(localStorage.getItem(SK_KEY)||'null'); }catch(e){ return null; }
+}
+function savePlayer(){
+  localStorage.setItem(SK_KEY, JSON.stringify(PLAYER));
+}
+
+/* ── Update the highest unlocked level and persist ── */
+function advanceLevel(n){
+  if(n > PLAYER.highestUnlockedLevel){
+    PLAYER.highestUnlockedLevel = n;
+    savePlayer();
+  }
+}
+
+/* ── Welcome screen language toggle ── */
+function setWelcomeLang(lang){
+  LANG = lang;
+  document.getElementById('wlc-en').classList.toggle('active', lang==='e');
+  document.getElementById('wlc-kn').classList.toggle('active', lang==='k');
+  document.getElementById('lang-label').textContent = lang==='e' ? 'ಕನ್ನಡ' : 'English';
+  // Update visible welcome text based on selected language
+  const isK = lang==='k';
+  document.getElementById('wlc-title').innerHTML = isK
+    ? 'ಸಂಸ್ಕೃತ ಸ್ವಯಂ-ಶಿಕ್ಷಕಕ್ಕೆ<br>ಸ್ವಾಗತ!'
+    : 'Welcome to Sanskrit<br>Swayam-Shikshaka!';
+  document.getElementById('wlc-sub').innerHTML = isK
+    ? 'ಪ್ರಾರಂಭಿಸಲು ನಿಮ್ಮ ಹೆಸರನ್ನು ನಮೂದಿಸಿ.<br><span style="color:var(--muted);font-size:.8rem">Please enter your name to begin.</span>'
+    : 'ಸಂಸ್ಕೃತ ಸ್ವಯಂ-ಶಿಕ್ಷಕಕ್ಕೆ ಸ್ವಾಗತ!<br>ಪ್ರಾರಂಭಿಸಲು ನಿಮ್ಮ ಹೆಸರನ್ನು ನಮೂದಿಸಿ<br><span style="color:var(--muted);font-size:.8rem">Please enter your name to start your journey.</span>';
+  document.getElementById('wlc-btn').textContent = isK ? 'ಪ್ರಾರಂಭಿಸಿ →' : 'ಪ್ರಾರಂಭಿಸಿ · Start Learning →';
+}
+
+/* ── Submit welcome form ── */
+function submitWelcome(){
+  const raw = (document.getElementById('wlc-name-input').value||'').trim();
+  if(!raw){
+    document.getElementById('wlc-name-input').style.borderColor='var(--fem)';
+    document.getElementById('wlc-name-input').placeholder = L('ಹೆಸರು ನಮೂದಿಸಿ!','Please enter a name!');
+    setTimeout(()=>{
+      document.getElementById('wlc-name-input').style.borderColor='';
+      document.getElementById('wlc-name-input').placeholder='Your name / ನಿಮ್ಮ ಹೆಸರು...';
+    }, 1800);
+    return;
+  }
+  PLAYER.name = raw;
+  PLAYER.lang = LANG;
+  PLAYER.highestUnlockedLevel = 1;
+  PLAYER.createdAt = new Date().toISOString();
+  savePlayer();
+  launchApp(false); // false = first time
+}
+
+/* ── Launch app (called on welcome submit OR returning user) ── */
+function launchApp(returning){
+  // Hide welcome screen
+  document.getElementById('welcome-screen').classList.add('hidden');
+
+  // Apply saved language
+  LANG = PLAYER.lang || 'e';
+  document.getElementById('lang-label').textContent = LANG==='e' ? 'ಕನ್ನಡ' : 'English';
+  applyLang();
+  buildChips();
+
+  // Show profile badge
+  updateProfileBadge();
+
+  // Show welcome-back banner for returning users
+  if(returning){
+    const wb = document.getElementById('hdr-wb');
+    document.getElementById('hdr-wb-name').textContent = PLAYER.name;
+    document.getElementById('hdr-wb-k').textContent = L('ಸ್ವಾಗತ ಮತ್ತೆ,','Welcome back,');
+    wb.classList.add('show');
+  }
+
+  // Restore unlocked levels silently (no confetti for restore)
+  const lvl = PLAYER.highestUnlockedLevel || 1;
+  if(lvl >= 2) restoreUnlock(2);
+  if(lvl >= 3) restoreUnlock(3);
+  if(lvl >= 4) restoreUnlock(4);
+  if(lvl >= 5) restoreUnlock(5); // grand exam
+
+  renderLeaderboard();
+}
+
+/* ── Restore a previously unlocked level (silent, no confetti) ── */
+function restoreUnlock(n){
+  const lockMap={2:['p2-lock','p2-open'],3:['p3-lock','p3-open'],4:['p4-lock','p4-open']};
+  if(lockMap[n]){
+    document.getElementById(lockMap[n][0]).style.display='none';
+    document.getElementById(lockMap[n][1]).classList.remove('hidden');
+    if(n===2)setTimeout(buildVTable,50);
+    if(n===3)setTimeout(buildVibhakti,50);
+    if(n===4)setTimeout(buildAvyaya,50);
+  }
+  if(n===5){
+    // restore grand exam
+    document.getElementById('grand-lock').style.display='none';
+    document.getElementById('grand-open').classList.remove('hidden');
+  }
+  // Update dots/connectors
+  const prev=n-1;
+  const pd=document.getElementById('d'+prev);
+  if(pd && n<=5){pd.className='dot done';pd.textContent='✓';}
+  const conn=document.getElementById('c'+prev);
+  if(conn && prev>=1 && prev<=4)conn.className='conn done';
+  const nd=document.getElementById('d'+n);
+  if(nd && n<=4){nd.className='dot active';nd.textContent=['','I','II','III','IV'][n]||n;}
+  if(n===5){
+    const d5=document.getElementById('d5');if(d5){d5.className='dot active';d5.textContent='🏆';}
+    document.getElementById('l5')?.classList.add('active');
+  }
+  document.getElementById('l'+n)?.classList.add('active');
+}
+
+/* ── Update the profile badge in top-left ── */
+function updateProfileBadge(){
+  const badge = document.getElementById('profile-badge');
+  if(!PLAYER.name){badge.classList.add('hidden');return;}
+  badge.classList.remove('hidden');
+  const initial = PLAYER.name.charAt(0).toUpperCase();
+  document.getElementById('pb-av').textContent = initial;
+  document.getElementById('pb-name').textContent = PLAYER.name;
+  const lvl = PLAYER.highestUnlockedLevel || 1;
+  const lvlLabels=['','ಭಾಗ ೧','ಭಾಗ ೨','ಭಾಗ ೩','ಭಾಗ ೪','ಮಹಾಪರೀಕ್ಷೆ'];
+  document.getElementById('pb-lvl').textContent = L(
+    `ಹಂತ: ${lvlLabels[lvl]||lvlLabels[4]} · ಮರುಹೊಂದಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ`,
+    `Level ${lvl>=5?'Grand':lvl} unlocked · Click to reset`
+  );
+}
+
+/* ── Confirm reset ── */
+function confirmReset(){
+  localStorage.removeItem(SK_KEY);
+  localStorage.removeItem(SK_LB);
+  document.getElementById('reset-modal').classList.remove('show');
+  // Full page reload to show welcome screen fresh
+  window.location.reload();
+}
+
+/* ── Reset modal localised strings update ── */
+function updateResetModal(){
+  document.getElementById('rm-title').textContent = L('ಎಲ್ಲ ಪ್ರಗತಿ ಅಳಿಸಲೇ?','Reset All Progress?');
+  document.getElementById('rm-sub').innerHTML = L(
+    'ನಿಮ್ಮ ಹೆಸರು, ಅನ್ಲಾಕ್ ಹಂತಗಳು ಮತ್ತು ಶ್ರೇಣಿ ಪಟ್ಟಿ ಎಲ್ಲ ಅಳಿಸಲ್ಪಡುತ್ತದೆ.<br><br><b style="color:var(--fem)">ಇದನ್ನು ರದ್ದು ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ.</b>',
+    'This will erase your name, all unlocked levels, and leaderboard scores.<br><br><b style="color:var(--fem)">This cannot be undone.</b>'
+  );
+  document.getElementById('rm-confirm').innerHTML = L('🗑 ಎಲ್ಲ ಅಳಿಸಿ','🗑 Reset Everything');
+  document.getElementById('rm-cancel').textContent = L('ರದ್ದು','Cancel');
+}
 
 /* ═══════════════════════════════════
    LANGUAGE STATE
@@ -514,6 +785,7 @@ const UI_STRINGS = {
   'hb-q':        {k:'ಪ್ರಶ್ನೆಗಳು',e:'Questions'},
   'hb-grand':    {k:'ಮಹಾಪರೀಕ್ಷೆ: 100 ಪ್ರ.',e:'Grand Exam: 100 Q'},
   'hb-lb':       {k:'ಶ್ರೇಣಿ ಪಟ್ಟಿ',e:'Leaderboard'},
+  'hdr-reset-lbl':{k:'ಪ್ರಗತಿ ಅಳಿಸಿ',e:'Reset Progress'},
   'l1':          {k:'ಸರ್ವನಾಮ<br>ವಾಕ್ಯ',e:'Pronouns<br>Sentences'},
   'l2':          {k:'ಧಾತು<br>ಕಾಲ',e:'Verbs<br>Tenses'},
   'l3':          {k:'ವಿಭಕ್ತಿ',e:'Vibhaktis'},
@@ -615,7 +887,11 @@ const UI_STRINGS = {
 function toggleLang(){
   LANG = LANG === 'e' ? 'k' : 'e';
   document.getElementById('lang-label').textContent = LANG === 'e' ? 'ಕನ್ನಡ' : 'English';
+  // ── Persist language preference ──
+  if(PLAYER.name){ PLAYER.lang = LANG; savePlayer(); }
   applyLang();
+  updateProfileBadge();
+  updateResetModal();
   // Rebuild all dynamic content with new language
   buildChips();
   if(grandActive) renderGrand();
@@ -1345,6 +1621,9 @@ function unlockPart(n){
   const nd=document.getElementById('d'+n);
   if(nd){nd.className='dot active';nd.textContent=['','I','II','III','IV'][n]||n;}
   document.getElementById('l'+n)?.classList.add('active');
+  // ── Auto-save progress ──
+  advanceLevel(n);
+  updateProfileBadge();
   confetti();
 }
 
@@ -1356,6 +1635,9 @@ function unlockGrand(){
   const d5=document.getElementById('d5');if(d5){d5.className='dot active';d5.textContent='🏆';}
   document.getElementById('l4')?.classList.add('active');
   document.getElementById('l5')?.classList.add('active');
+  // ── Auto-save: grand exam unlocked = level 5 ──
+  advanceLevel(5);
+  updateProfileBadge();
   confetti();
 }
 
@@ -1370,8 +1652,11 @@ function promptName(){
   document.getElementById('nm-score-disp').textContent=`${score}/${total}`;
   document.getElementById('nm-score-sub').textContent=`${pct}% ${L('ಸರಿ','correct')} · ${L('ಮಹಾಪರೀಕ್ಷೆ','Grand Exam')}`;
   document.getElementById('wm').classList.remove('show');
+  // ── Auto-fill with stored player name ──
+  const inp = document.getElementById('nm-input');
+  if(PLAYER.name) inp.value = PLAYER.name;
   document.getElementById('nm-modal').classList.add('show');
-  // Animate bar after modal is visible
+  // Animate score bar
   setTimeout(()=>{
     const bar=document.getElementById('nm-bar');
     if(bar){
@@ -1382,32 +1667,35 @@ function promptName(){
       bar.style.width=pct+'%';
     }
   },150);
-  setTimeout(()=>document.getElementById('nm-input').focus(),300);
+  // Focus only if name field is empty
+  if(!PLAYER.name) setTimeout(()=>inp.focus(),300);
 }
 
 function saveName(){
-  const name=(document.getElementById('nm-input').value||'').trim();
-  if(!name)return;
-  const total=QST.grand.sess.length||100;
-  const scores=JSON.parse(localStorage.getItem('sk_lb')||'[]');
-  scores.push({name,score:pendingGrandScore,total,date:fmtDate(new Date())});
-  scores.sort((a,b)=>b.score-a.score||b.total-a.total);
-  localStorage.setItem('sk_lb',JSON.stringify(scores.slice(0,20)));
+  const typed = (document.getElementById('nm-input').value||'').trim();
+  const name = typed || PLAYER.name;
+  if(!name){ document.getElementById('nm-input').focus(); return; }
+  // Sync player name if user changed it in the leaderboard modal
+  if(typed && typed !== PLAYER.name){ PLAYER.name = typed; savePlayer(); updateProfileBadge(); }
+  const total = QST.grand.sess.length||100;
+  const scores = JSON.parse(localStorage.getItem(SK_LB)||'[]');
+  scores.push({ name, score: pendingGrandScore, total, date: fmtDate(new Date()) });
+  scores.sort((a,b) => b.score - a.score || b.total - a.total);
+  localStorage.setItem(SK_LB, JSON.stringify(scores.slice(0,20)));
   document.getElementById('nm-modal').classList.remove('show');
-  document.getElementById('nm-input').value='';
+  document.getElementById('nm-input').value = '';
   renderLeaderboard();
-  // Scroll to leaderboard
-  setTimeout(()=>document.getElementById('pdiv-lb').scrollIntoView({behavior:'smooth'}),300);
+  setTimeout(()=>document.getElementById('pdiv-lb').scrollIntoView({behavior:'smooth'}),350);
 }
 
 function clearLB(){
   if(!confirm(L('ಶ್ರೇಣಿ ಪಟ್ಟಿ ತೆರವು ಮಾಡಲೇ?','Clear all leaderboard entries?')))return;
-  localStorage.removeItem('sk_lb');
+  localStorage.removeItem(SK_LB);
   renderLeaderboard();
 }
 
 function renderLeaderboard(){
-  const scores=JSON.parse(localStorage.getItem('sk_lb')||'[]').slice(0,10);
+  const scores=JSON.parse(localStorage.getItem(SK_LB)||'[]').slice(0,10);
   const lb=document.getElementById('lb-body');
   if(!scores.length){
     lb.innerHTML=`<div class="lb-empty">
@@ -1489,12 +1777,30 @@ function confetti(){
 }
 
 /* ═══════════════════════════════════
-   INIT
+   BOOT — Check profile, show welcome or resume
 ═══════════════════════════════════ */
 document.addEventListener('DOMContentLoaded',()=>{
-  buildChips();
+  const saved = loadPlayer();
+
+  if(saved && saved.name){
+    // ── Returning user: restore profile, skip welcome screen ──
+    PLAYER = {
+      name: saved.name,
+      lang: saved.lang || 'e',
+      highestUnlockedLevel: saved.highestUnlockedLevel || 1,
+      createdAt: saved.createdAt || ''
+    };
+    launchApp(true);  // true = returning user → show welcome-back banner
+  } else {
+    // ── First-time user: show welcome screen ──
+    // App stays hidden behind welcome screen; chips etc. built on launchApp()
+    document.getElementById('welcome-screen').classList.remove('hidden');
+    // Focus name input with a slight delay for animation
+    setTimeout(()=>document.getElementById('wlc-name-input').focus(), 400);
+  }
+
+  // Always render leaderboard so it's visible when user scrolls down
   renderLeaderboard();
-  applyLang();
 });
 </script>
 </body>
