@@ -50,7 +50,6 @@
         .vbnm{font-weight:700;color:var(--saffron)}
         .vbex{font-family:'Tiro Devanagari Sanskrit',serif;font-size:.84rem;color:#93c5fd}
 
-        /* expandable declension */
         .exp-btn{cursor:pointer;background:none;border:1px solid var(--bdr2);border-radius:6px;padding:2px 8px;font-size:.8rem;color:var(--muted);transition:all .2s;margin-left:8px}
         .exp-btn:hover{color:var(--gold);border-color:var(--gold)}
         .decl-row{display:none}
@@ -59,7 +58,6 @@
         .decl-table th{background:var(--s3);padding:6px 8px;border:1px solid var(--bdr);text-align:center}
         .decl-table td{padding:5px 8px;border:1px solid var(--bdr);text-align:center;font-family:'Tiro Devanagari Sanskrit',serif}
 
-        /* Quiz styles (same as before) */
         .qbw{height:6px;background:var(--s3);border-radius:3px;margin-bottom:22px;overflow:hidden}
         .qb{height:100%;background:linear-gradient(90deg,var(--saffron),var(--gold));border-radius:3px;transition:width .5s}
         .qsc{text-align:center;font-size:.8rem;color:var(--muted);margin-bottom:6px}
@@ -174,7 +172,6 @@
         ];
 
         // ---------- Pre‑computed full declensions (8 cases × 3 numbers) ----------
-        // Each entry: { sno, cat, stem, nom: {sg,du,pl}, decl: [ [sg,du,pl], ... ] }
         const PARADIGMS = [
           { sno:1, cat:'ಪುಲ್ಲಿಂಗ', stem:'राम', nom:{sg:'रामः',du:'रामौ',pl:'रामाः'},
             decl:[
@@ -341,6 +338,60 @@
 
         const caseNames = ['प्रथमा','द्वितीया','तृतीया','चतुर्थी','पञ्चमी','षष्ठी','सप्तमी','सम्बोधनम्'];
 
+        // ---------- Part 3 question bank (50 Q) ----------
+        const part3Bank = [
+          {q:{k:"___ पठति। (प्रथमा)",e:"___ reads. (Subject)"},o:["बालकः","बालकम्","बालकेन","बालकाय"],a:0},
+          {q:{k:"___ खादति। (प्रथमा)",e:"___ eats. (Subject)"},o:["बालिकाम्","बालिका","बालिकया","बालिकायै"],a:1},
+          {q:{k:"___ पतति। (प्रथमा)",e:"___ falls. (Subject)"},o:["फलेन","फलाय","फलम्","फलात्"],a:2},
+          {q:{k:"___ गच्छति। (प्रथमा)",e:"___ goes. (Subject)"},o:["शिक्षकः","शिक्षकम्","शिक्षकाय","शिक्षकेण"],a:0},
+          {q:{k:"___ वदति। (प्रथमा)",e:"___ speaks. (Subject)"},o:["मातरम्","माता","मात्रा","मात्रे"],a:1},
+          {q:{k:"___ पश्यति। (प्रथमा)",e:"___ sees. (Subject)"},o:["पितरम्","पित्रा","पिता","पित्रे"],a:2},
+          {q:{k:"___ लिखति। (प्रथमा)",e:"___ writes. (Subject)"},o:["छात्रः","छात्रम्","छात्रेण","छात्राय"],a:0},
+          {q:{k:"सः ___ पश्यति। (द्वितीया)",e:"He sees ___. (Object)"},o:["वृक्षम्","वृक्षः","वृक्षेण","वृक्षाय"],a:0},
+          {q:{k:"सा ___ पिबति। (द्वितीया)",e:"She drinks ___. (Object)"},o:["जलेन","जलम्","जलात्","जलस्य"],a:1},
+          {q:{k:"अहं ___ पठामि। (द्वितीया)",e:"I read ___. (Object)"},o:["पुस्तकेन","पुस्तकाय","पुस्तकम्","पुस्तकस्य"],a:2},
+          {q:{k:"वयं ___ गच्छामः। (द्वितीया)",e:"We go to ___. (Object)"},o:["ग्रामम्","ग्रामः","ग्रामेण","ग्रामात्"],a:0},
+          {q:{k:"त्वं ___ खादसि। (द्वितीया)",e:"You eat ___. (Object)"},o:["अन्नेन","अन्नम्","अन्नात्","अन्नस्य"],a:1},
+          {q:{k:"ते ___ पश्यन्ति। (द्वितीया)",e:"They see ___. (Object)"},o:["चित्रेण","चित्राय","चित्रम्","चित्रस्य"],a:2},
+          {q:{k:"ताः ___ शृण्वन्ति। (द्वितीया)",e:"They listen to ___. (Object)"},o:["कथाम्","कथा","कथया","कथायै"],a:0},
+          {q:{k:"सः ___ लिखति। (तृतीया)",e:"He writes with ___. (Instrumental)"},o:["हस्तः","हस्तेन","हस्तम्","हस्तात्"],a:1},
+          {q:{k:"सा ___ गच्छति। (तृतीया)",e:"She goes by ___. (Instrumental)"},o:["यानम्","यानात्","यानेन","यानस्य"],a:2},
+          {q:{k:"अहं ___ पश्यामि। (तृतीया)",e:"I see with ___. (Instrumental)"},o:["नेत्रेण","नेत्रम्","नेत्रात्","नेत्रस्य"],a:0},
+          {q:{k:"बालकः ___ क्रीडति। (तृतीया)",e:"Boy plays with ___. (Instrumental)"},o:["कन्दुकम्","कन्दुकेन","कन्दुकस्य","कन्दुकात्"],a:1},
+          {q:{k:"भवान् ___ पिबति। (तृतीया)",e:"You drink with ___. (Instrumental)"},o:["चषकम्","चषकात्","चषकेन","चषकस्य"],a:2},
+          {q:{k:"माता ___ खादति। (तृतीया)",e:"Mother eats with ___. (Instrumental)"},o:["चमसेन","चमसम्","चमसात्","चमसस्य"],a:0},
+          {q:{k:"पिता ___ ताडयति। (तृतीया)",e:"Father hits with ___. (Instrumental)"},o:["दण्डम्","दण्डेन","दण्डस्य","दण्डात्"],a:1},
+          {q:{k:"सः ___ धनं ददाति। (चतुर्थी)",e:"He gives money to ___. (Dative)"},o:["मित्रम्","मित्रेण","मित्राय","मित्रात्"],a:2},
+          {q:{k:"अहं ___ गच्छामि। (चतुर्थी)",e:"I go for ___. (Dative)"},o:["पठनाय","पठनम्","पठनेन","पठनात्"],a:0},
+          {q:{k:"___ नमः। (चतुर्थी)",e:"Salutations to ___. (Dative)"},o:["देवम्","देवाय","देवेन","देवे"],a:1},
+          {q:{k:"माता ___ अन्नं ददाति। (चतुर्थी)",e:"Mother gives food to ___. (Dative)"},o:["पुत्रम्","पुत्रेण","पुत्राय","पुत्रात्"],a:2},
+          {q:{k:"पिता ___ वस्त्रं ददाति। (चतुर्थी)",e:"Father gives clothes to ___. (Dative)"},o:["पुत्र्यै","पुत्रीम्","पुत्र्या","पुत्र्याः"],a:0},
+          {q:{k:"सः ___ फलं ददाति। (चतुर्थी)",e:"He gives fruit to ___. (Dative)"},o:["बालकम्","बालकाय","बालकेन","बालकात्"],a:1},
+          {q:{k:"वयं ___ गच्छामः। (चतुर्थी)",e:"We go for ___. (Dative)"},o:["भोजनम्","भोजनेन","भोजनाय","भोजनात्"],a:2},
+          {q:{k:"फलं ___ पतति। (पंचमी)",e:"Fruit falls from ___. (Ablative)"},o:["वृक्षात्","वृक्षम्","वृक्षेण","वृक्षस्य"],a:0},
+          {q:{k:"जलं ___ पतति। (पंचमी)",e:"Water falls from ___. (Ablative)"},o:["मेघम्","मेघात्","मेघेन","मेघस्य"],a:1},
+          {q:{k:"सः ___ आगच्छति। (पंचमी)",e:"He comes from ___. (Ablative)"},o:["ग्रामम्","ग्रामेण","ग्रामात्","ग्रामस्य"],a:2},
+          {q:{k:"सा ___ आगच्छति। (पंचमी)",e:"She comes from ___. (Ablative)"},o:["नगरात्","नगरम्","नगरेण","नगरस्य"],a:0},
+          {q:{k:"अहं ___ आगच्छामि। (पंचमी)",e:"I come from ___. (Ablative)"},o:["विद्यालयम्","विद्यालयात्","विद्यालयेन","विद्यालयस्य"],a:1},
+          {q:{k:"पत्रं ___ पतति। (पंचमी)",e:"Leaf falls from ___. (Ablative)"},o:["शाखाम्","शाखया","शाखायाः","शाखायै"],a:2},
+          {q:{k:"नदी ___ प्रवहति। (पंचमी)",e:"River flows from ___. (Ablative)"},o:["पर्वतात्","पर्वतम्","पर्वतेन","पर्वतस्य"],a:0},
+          {q:{k:"इदं ___ पुस्तकम्। (षष्ठी)",e:"This is ___ book. (Genitive)"},o:["रामम्","रामस्य","रामेण","रामात्"],a:1},
+          {q:{k:"सा ___ माता। (षष्ठी)",e:"She is ___ mother. (Genitive)"},o:["कृष्णम्","कृष्णेन","कृष्णस्य","कृष्णात्"],a:2},
+          {q:{k:"एतत् ___ गृहम्। (षष्ठी)",e:"This is ___ house. (Genitive)"},o:["मित्रस्य","मित्रम्","मित्रेण","मित्रात्"],a:0},
+          {q:{k:"सः ___ पुत्रः। (षष्ठी)",e:"He is ___ son. (Genitive)"},o:["दशरथम्","दशरथस्य","दशरथेन","दशरथात्"],a:1},
+          {q:{k:"तस्य ___ किं? (षष्ठी)",e:"What is his ___? (Genitive)"},o:["नाम्नः","नाम्नि","नाम","नाम्ना"],a:2},
+          {q:{k:"एषः ___ वर्णः। (षष्ठी)",e:"This is color of ___. (Genitive)"},o:["पर्णस्य","पर्णम्","पर्णेन","पर्णात्"],a:0},
+          {q:{k:"तत् ___ वाहनम्। (षष्ठी)",e:"That is ___ vehicle. (Genitive)"},o:["शिक्षकम्","शिक्षकस्य","शिक्षकेन","शिक्षकात्"],a:1},
+          {q:{k:"मीनः ___ तरति। (सप्तमी)",e:"Fish swims in ___. (Locative)"},o:["जलम्","जलेन","जले","जलात्"],a:2},
+          {q:{k:"पक्षिणः ___ कूजन्ति। (सप्तमी)",e:"Birds chirp on ___. (Locative)"},o:["वृक्षे","वृक्षम्","वृक्षेण","वृक्षात्"],a:0},
+          {q:{k:"सः ___ वसति। (सप्तमी)",e:"He lives in ___. (Locative)"},o:["नगरम्","नगरे","नगरेण","नगरात्"],a:1},
+          {q:{k:"सा ___ वसति। (सप्तमी)",e:"She lives in ___. (Locative)"},o:["ग्रामम्","ग्रामेण","ग्रामे","ग्रामात्"],a:2},
+          {q:{k:"छात्रः ___ पठति। (सप्तमी)",e:"Student reads in ___. (Locative)"},o:["शालायाम्","शालाम्","शालया","शालायाः"],a:0},
+          {q:{k:"जलं ___ अस्ति। (सप्तमी)",e:"Water is in ___. (Locative)"},o:["चषकम्","चषके","चषकेन","चषकात्"],a:1},
+          {q:{k:"धनं ___ अस्ति। (सप्तमी)",e:"Money is in ___. (Locative)"},o:["स्यूतम्","स्यूतेन","स्यूते","स्यूतात्"],a:2},
+          {q:{k:"पुष्पाणि ___ विकसन्ति। (सप्तमी)",e:"Flowers bloom in ___. (Locative)"},o:["वने","वनम्","वनेन","वनात्"],a:0}
+        ];
+
         // ---------- Utility ----------
         function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=0|Math.random()*(i+1);[a[i],a[j]]=[a[j],a[i]];} return a; }
 
@@ -396,43 +447,98 @@
             }
         }
 
-        // ---------- Quiz engine (unchanged) ----------
-        const part3Bank = [
-          {q:{k:"___ पठति। (प्रथमा)",e:"___ reads. (Subject)"},o:["बालकः","बालकम्","बालकेन","बालकाय"],a:0},
-          {q:{k:"___ खादति। (प्रथमा)",e:"___ eats. (Subject)"},o:["बालिकाम्","बालिका","बालिकया","बालिकायै"],a:1},
-          {q:{k:"___ पतति। (प्रथमा)",e:"___ falls. (Subject)"},o:["फलेन","फलाय","फलम्","फलात्"],a:2},
-          {q:{k:"___ गच्छति। (प्रथमा)",e:"___ goes. (Subject)"},o:["शिक्षकः","शिक्षकम्","शिक्षकाय","शिक्षकेण"],a:0},
-          {q:{k:"___ वदति। (प्रथमा)",e:"___ speaks. (Subject)"},o:["मातरम्","माता","मात्रा","मात्रे"],a:1},
-          {q:{k:"___ पश्यति। (प्रथमा)",e:"___ sees. (Subject)"},o:["पितरम्","पित्रा","पिता","पित्रे"],a:2},
-          {q:{k:"___ लिखति। (प्रथमा)",e:"___ writes. (Subject)"},o:["छात्रः","छात्रम्","छात्रेण","छात्राय"],a:0},
-          {q:{k:"सः ___ पश्यति। (द्वितीया)",e:"He sees ___. (Object)"},o:["वृक्षम्","वृक्षः","वृक्षेण","वृक्षाय"],a:0},
-          {q:{k:"सा ___ पिबति। (द्वितीया)",e:"She drinks ___. (Object)"},o:["जलेन","जलम्","जलात्","जलस्य"],a:1},
-          {q:{k:"अहं ___ पठामि। (द्वितीया)",e:"I read ___. (Object)"},o:["पुस्तकेन","पुस्तकाय","पुस्तकम्","पुस्तकस्य"],a:2},
-          {q:{k:"वयं ___ गच्छामः। (द्वितीया)",e:"We go to ___. (Object)"},o:["ग्रामम्","ग्रामः","ग्रामेण","ग्रामात्"],a:0},
-          {q:{k:"त्वं ___ खादसि। (द्वितीया)",e:"You eat ___. (Object)"},o:["अन्नेन","अन्नम्","अन्नात्","अन्नस्य"],a:1},
-          {q:{k:"ते ___ पश्यन्ति। (द्वितीया)",e:"They see ___. (Object)"},o:["चित्रेण","चित्राय","चित्रम्","चित्रस्य"],a:2},
-          {q:{k:"ताः ___ शृण्वन्ति। (द्वितीया)",e:"They listen to ___. (Object)"},o:["कथाम्","कथा","कथया","कथायै"],a:0},
-          {q:{k:"सः ___ लिखति। (तृतीया)",e:"He writes with ___. (Instrumental)"},o:["हस्तः","हस्तेन","हस्तम्","हस्तात्"],a:1},
-          {q:{k:"सा ___ गच्छति। (तृतीया)",e:"She goes by ___. (Instrumental)"},o:["यानम्","यानात्","यानेन","यानस्य"],a:2},
-          {q:{k:"अहं ___ पश्यामि। (तृतीया)",e:"I see with ___. (Instrumental)"},o:["नेत्रेण","नेत्रम्","नेत्रात्","नेत्रस्य"],a:0},
-          {q:{k:"बालकः ___ क्रीडति। (तृतीया)",e:"Boy plays with ___. (Instrumental)"},o:["कन्दुकम्","कन्दुकेन","कन्दुकस्य","कन्दुकात्"],a:1},
-          {q:{k:"भवान् ___ पिबति। (तृतीया)",e:"You drink with ___. (Instrumental)"},o:["चषकम्","चषकात्","चषकेन","चषकस्य"],a:2},
-          {q:{k:"माता ___ खादति। (तृतीया)",e:"Mother eats with ___. (Instrumental)"},o:["चमसेन","चमसम्","चमसात्","चमसस्य"],a:0},
-          {q:{k:"पिता ___ ताडयति। (तृतीया)",e:"Father hits with ___. (Instrumental)"},o:["दण्डम्","दण्डेन","दण्डस्य","दण्डात्"],a:1},
-          // … (remaining questions unchanged)
-        ];
-        // (insert the rest of the question bank exactly as before)
-        // … (abbreviated for brevity; the full array can be copied from previous version)
+        // ---------- Quiz engine (Part 3) ----------
         const QST = {3:{sess:[],idx:0,ans:[],done:false,started:false}};
-        function initQ(p){ /* identical to previous level3 */ }
-        function startQ(p){ /* identical */ }
-        function renderQ(p){ /* identical */ }
-        function selQ(p,i){ /* identical */ }
-        function nextQ(p){ /* identical */ }
-        function submitQ(p){ /* identical */ }
-        function showT(id,btn,navId){ /* identical */ }
-        function toggleLang(){ /* identical */ }
 
+        function initQ(part){
+            const s=QST[part];
+            if(s.started&&!s.done){ renderQ(part); return; }
+            if(s.done){ renderQResult(part); return; }
+            document.getElementById('quiz-3-body').innerHTML=`<div style="text-align:center;padding:40px 0">
+                <div style="font-size:3rem;margin-bottom:14px">📝</div>
+                <div style="font-size:1.1rem;font-weight:800;margin-bottom:8px">Vibhakti Quiz</div>
+                <div style="font-size:.84rem;color:var(--muted);margin-bottom:18px">50‑Q bank · 10 random · <b style="color:var(--saffron)">10/10 to unlock!</b></div>
+                <button class="btn bp" onclick="startQ(3)">Start Quiz →</button>
+            </div>`;
+        }
+
+        function startQ(part){
+            const pool = shuffle([...part3Bank]).slice(0,10);
+            QST[part].sess = pool.map(q=>{
+                const si=shuffle([0,1,2,3]);
+                return {...q, so:si.map(i=>q.o[i]), sa:si.indexOf(q.a)};
+            });
+            QST[part].idx=0; QST[part].ans=[]; QST[part].done=false; QST[part].started=true;
+            renderQ(part);
+        }
+
+        function renderQ(part){
+            const s=QST[part], q=s.sess[s.idx], total=s.sess.length;
+            const pct=(s.idx/total)*100, answered=s.ans[s.idx]!==undefined;
+            const score=s.ans.reduce((t,a,i)=>t+(a===s.sess[i].sa?1:0),0);
+            const qText = LANG==='k'?q.q.k:q.q.e;
+            const hasSub = qText.includes('___');
+            document.getElementById('quiz-3-body').innerHTML=`
+                <div class="qsc">Q <b>${s.idx+1}</b>/${total} · Score: <b>${score}</b></div>
+                <div class="qbw"><div class="qb" style="width:${pct}%"></div></div>
+                <div class="qcard"><div class="qnum">Part 3 · Q${s.idx+1}</div>
+                    ${hasSub?`<div class="qsub">${qText}</div>`:`<div class="qq">${qText}</div>`}
+                </div>
+                <div class="opts">
+                    ${q.so.map((o,i)=>{
+                        let cls='opt';
+                        if(answered){if(i===q.sa)cls+=' ok';else if(i===s.ans[s.idx])cls+=' wrong';}
+                        return `<button class="${cls}" onclick="selQ(${part},${i})" ${answered?'disabled':''}><span class="ol">${['A','B','C','D'][i]}</span><span style="font-family:'Tiro Devanagari Sanskrit',serif">${o}</span></button>`;
+                    }).join('')}
+                </div>
+                ${answered?`<div class="fb ${s.ans[s.idx]===q.sa?'ok':'wrong'}">${s.ans[s.idx]===q.sa?'✅ Correct!':'❌ Wrong! ✔ '+q.so[q.sa]}</div>
+                <div class="brow"><button class="btn bp" onclick="${s.idx<total-1?'nextQ(3)':'submitQ(3)'}">${s.idx<total-1?'Next →':'Result 🏁'}</button></div>`:
+                `<div style="text-align:center;font-size:.74rem;color:var(--muted2)">Click an option</div>`}`;
+        }
+
+        function selQ(part,i){ const s=QST[part]; if(s.ans[s.idx]!==undefined) return; s.ans[s.idx]=i; renderQ(part); }
+        function nextQ(part){ QST[part].idx++; renderQ(part); }
+
+        function submitQ(part){
+            QST[part].done=true;
+            const s=QST[part], total=s.sess.length;
+            const score=s.ans.reduce((t,a,i)=>t+(a===s.sess[i].sa?1:0),0), win=score===total;
+            document.getElementById('quiz-3-body').innerHTML=`<div class="rp">
+                <span class="rem">${score===total?'🎉':'😔'}</span>
+                <div class="rscore ${win?'win':'lose'}">${score}/${total}</div>
+                <div class="rmsg">${win?'Congratulations! Level 4 Unlocked!':'Try again!'}</div>
+                <div class="rdots">${s.ans.map((a,i)=>`<div class="rdot ${a===s.sess[i].sa?'ok':'wrong'}">${i+1}</div>`).join('')}</div>
+                <div class="brow">
+                    <button class="btn bg" onclick="QST[3]={sess:[],idx:0,ans:[],done:false,started:false};initQ(3)">↺ Retry</button>
+                    ${win?`<a href="level4.html" class="btn bp">Level 4 →</a>`:''}
+                </div>
+            </div>`;
+            if(win){
+                const pl = loadPlayer()||{name:'',lang:LANG,highestUnlockedLevel:1};
+                if(pl.highestUnlockedLevel < 4) pl.highestUnlockedLevel = 4;
+                savePlayer(pl);
+            }
+        }
+
+        // ---------- Tab switching ----------
+        function showT(id,btn,navId){
+            const nav=document.getElementById(navId); nav.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
+            btn.classList.add('on');
+            document.querySelectorAll('[id^="p3-"]').forEach(el=>el.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        // ---------- Language toggle ----------
+        function toggleLang(){
+            LANG = LANG==='e'?'k':'e';
+            const pl = loadPlayer();
+            if(pl){ pl.lang = LANG; savePlayer(pl); }
+            document.getElementById('lang-label').textContent = LANG==='e'?'ಕನ್ನಡ':'English';
+            buildVibhakti();
+            buildParadigm();
+        }
+
+        // ---------- Init ----------
         document.addEventListener('DOMContentLoaded',()=>{
             const pl = loadPlayer();
             LANG = (pl && pl.lang) || 'e';
